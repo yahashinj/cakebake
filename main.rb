@@ -6,8 +6,8 @@ class Main < Gosu::Window
 	def initialize
 		super 800, 800
 		self.caption = "Cake Baking Simulator 2015"
-		@background = Gosu::Image.new("background.png")
-		@player_anim = Gosu::Image::load_tiles("chef.png", 114, 216)
+		@background = Gosu::Image.new("media/background.png")
+		@player_anim = Gosu::Image::load_tiles("media/chef.png", 114, 216)
 		@player = Player.new(@player_anim)
 	end
 
