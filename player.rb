@@ -2,7 +2,7 @@ require "gosu"
 
 class Player
 
-	attr_reader :score
+	attr_reader :score, :x, :y 
 	
 	def initialize animation
 		@animation = animation
@@ -11,6 +11,7 @@ class Player
 		@y = 500
 		@anim = 0
 		@angle = 90
+		@layer = 1
 	end
 
 	def draw
@@ -37,7 +38,18 @@ class Player
 	end
 
 	def warp(x, y)
-		@x, @y = x,y
+		@x, @y = x, y
+	end
+
+	def catch cake
+		if cake.reject! {|cake| Gosu::distance(@x, @y, cake.x, cake.y) < 20 && @layer !=cake.layer} then
+			@layer = 1
+		end
+
+		if cake.reject! {|cake| Gosu::distance(@x, @y, cake.x, cake.y) < 20 && @layer == cake.layer} then
+			@layer += 1
+		end
+		print @layer
 	end
 
 end
