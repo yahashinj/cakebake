@@ -1,5 +1,5 @@
 require "gosu"
-require "player"
+require_relative "player"
 
 class Cakehold
 	def initialize animation
