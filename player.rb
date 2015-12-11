@@ -2,7 +2,7 @@ require "gosu"
 
 class Player
 
-	attr_reader :score, :x, :y 
+	attr_reader :score, :x, :y, :layer
 	
 	def initialize animation
 		@animation = animation
@@ -42,14 +42,21 @@ class Player
 	end
 
 	def catch cake
-		if cake.reject! {|cake| Gosu::distance(@x, @y, cake.x, cake.y) < 20 && @layer !=cake.layer} then
+		if cake.reject! {|cake| Gosu::distance(@x, @y + 15, cake.x, cake.y) < 30 && @layer !=cake.layer} then
 			@layer = 1
 		end
 
-		if cake.reject! {|cake| Gosu::distance(@x, @y, cake.x, cake.y) < 20 && @layer == cake.layer} then
+		if cake.reject! {|cake| Gosu::distance(@x, @y + 15, cake.x, cake.y) < 30 && @layer == cake.layer} then
 			@layer += 1
 		end
-		print @layer
+
+	end
+
+	def score?
+		if @layer >= 6
+			@score += 1
+			@layer = 1
+		end
 	end
 
 end

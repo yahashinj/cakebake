@@ -6,8 +6,8 @@ class Cake
 	
 	def initialize cake_layers
 		@cake_layers = cake_layers
-		@x = rand * 800
-		@y = 0
+		@x = rand * 750
+		@y = -100
 		@layer = (rand * 5 + 1).to_i
 	end
 
